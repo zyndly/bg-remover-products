@@ -131,12 +131,35 @@ python remove_bg.py raw/*.jpg clean_products
 # ...
 # Complete! Processed 15 image(s)
 ```
+## Example Workflow for adding BG
+
+# 1. Remove backgrounds from raw products
+python remove_bg.py raw/*.jpg processed
+
+# 2. Add white background to all processed images
+python add_bg.py "processed/*_no_bg.webp" backgrounds/white.jpg final
+
+# Output structure:
+# raw/product-001.jpg → processed/product-001_no_bg.webp → final/product-001_with_bg.webp
+
+## Usage Examples
+
+# Single image
+python add_bg.py product_no_bg.webp white_bg.jpg
+
+# Save to specific folder
+python add_bg.py product_no_bg.webp white_bg.jpg output_folder
+
+# Batch with pattern
+python add_bg.py "clean/*.webp" backgrounds/gradient.png final_images
+
 
 ## Project Structure
 
 ```
 bg-remover-products/
-├── remove_bg.py          # Main script
+├── remove_bg.py          # Script for removing BG
+├── add_bg.py               # Script for adding BG
 ├── README.md             # This file
 ├── REQUIREMENTS.txt      # Python dependencies
 ├── .venv/               # Virtual environment (created during setup)
